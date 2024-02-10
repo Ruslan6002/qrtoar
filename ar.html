@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js"></script>
+    <script src="https://www.youtube.com/iframe_api?key=AIzaSyD-lhhzP67JRJcvDwIO1z8bXlHdAbmOM44"></script>
     <style>
         body { margin: 0; overflow: hidden; }
         #start-button { 
@@ -54,6 +55,10 @@
     <script>
         var player;
 
+        function onYouTubeIframeAPIReady() {
+            // Ничего не нужно делать здесь
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const marker = document.querySelector('#hiro-marker');
             const button = document.getElementById('start-button');
@@ -74,12 +79,15 @@
                     player = new YT.Player('player', {
                         height: '315',
                         width: '560',
-                        videoId: 'Hm989eS5VbI', // Замените VIDEO_ID на ID вашего YouTube видео
+                        videoId: '5waVHnnu_d4', // Замените VIDEO_ID на ID вашего YouTube видео
                         playerVars: {
                             'controls': 0,
                             'playsinline': 1,
                             'showinfo': 0,
                             'autohide': 1
+                        },
+                        events: {
+                            'onReady': onPlayerReady
                         }
                     });
                 }
@@ -87,6 +95,10 @@
                 player.playVideo();
                 button.style.display = 'none';
             });
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
         });
     </script>
 </body>
