@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>WebAR Video Example</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com https://youtube.com; script-src 'self' https://aframe.io https://raw.githack.com; style-src 'self' 'unsafe-inline' https://aframe.io https://raw.githack.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.0/aframe/build/aframe-ar.js"></script>
-    <style>
-        body { margin: 0; overflow: hidden; }
-    </style>
 </head>
 <body>
     <a-scene embedded arjs='sourceType: webcam;'>
         <a-marker preset="hiro" id="hiro-marker">
-            <a-videosphere src="#youtube-video"></a-videosphere>
+            <a-video src="#youtube-video" width="1.6" height="0.9" position="0 0 0" rotation="-90 0 0" muted playsinline></a-video>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
@@ -29,11 +25,11 @@
 
             const marker = document.querySelector('#hiro-marker');
             marker.addEventListener('markerFound', () => {
-                youtubeVideo.style.display = 'block';
+                youtubeVideo.style.display = 'block'; // Показать видео при обнаружении маркера
             });
 
             marker.addEventListener('markerLost', () => {
-                youtubeVideo.style.display = 'none';
+                youtubeVideo.style.display = 'none'; // Скрыть видео при потере маркера
             });
         });
     </script>
